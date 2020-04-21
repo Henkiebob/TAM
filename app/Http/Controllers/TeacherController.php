@@ -17,8 +17,7 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::where('name', $name)->get()->first();
         if( $teacher->update($request->all()) ){
-            return response(200)
-            ->header('Content-Type', 'text/plain');
+            return $teacher;
         }
         else {
             return response('Sorry geart', 500)
