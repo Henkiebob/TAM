@@ -16,6 +16,13 @@ class TeacherController extends Controller
     public function update(Request $request, $name)
     {
         $teacher = Teacher::where('name', $name)->get()->first();
-        return $teacher->update($request->all());
+        if( $teacher->update($request->all()) ){
+            return response(200)
+            ->header('Content-Type', 'text/plain');
+        }
+        else {
+            return response('Sorry geart', 500)
+            ->header('Content-Type', 'text/plain');
+        }
     }
 }
