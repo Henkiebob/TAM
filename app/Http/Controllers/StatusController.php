@@ -9,6 +9,7 @@ class StatusController extends Controller
 {
     public function show($name)
     {
+        $name = strtolower($name);
         $teacher = Teacher::where('name', $name)->get()->first();
         return view('status')->with('teacher', $teacher);
     }

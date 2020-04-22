@@ -15,6 +15,7 @@ class TeacherController extends Controller
 
     public function update(Request $request, $name)
     {
+        $name = strtolower($name);
         $teacher = Teacher::where('name', $name)->get()->first();
         if( $teacher->update($request->all()) ){
             return $teacher;
@@ -27,6 +28,7 @@ class TeacherController extends Controller
 
     public function show($name)
     {
+        $name = strtolower($name);
         $teacher = Teacher::where('name', $name)->get()->first();
         return view('teachers.status')->with('teacher', $teacher);
     }
