@@ -24,4 +24,10 @@ class TeacherController extends Controller
             ->header('Content-Type', 'text/plain');
         }
     }
+
+    public function show($name)
+    {
+        $teacher = Teacher::where('name', $name)->get()->first();
+        return view('teachers.status')->with('teacher', $teacher);
+    }
 }

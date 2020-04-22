@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('teachers', 'TeacherController@index');
+Route::get('teachers/{name}', 'TeacherController@show');
 Route::put('teachers/{name}', 'TeacherController@update');
+
+Route::get('status/{name}', 'StatusController@show');
 
 // Route::get('/teachers', function () {
 //     return Teacher::all();
@@ -29,3 +33,6 @@ Route::put('teachers/{name}', 'TeacherController@update');
 // //POST & PUT
 // Route::post('teacher', 'TeacherController@store');
 // Route::put('teachers/{name}', 'TeacherController@update');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
