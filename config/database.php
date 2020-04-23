@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Str;
 
-$url = parse_url(getenv("DATABASE_URL"));
-
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+if($url = parse_url(getenv("DATABASE_URL"))) {
+    if(isset($url["path"])) {
+        $host = $url["host"];
+        $username = $url["user"];
+        $password = $url["pass"];
+        $database = substr($url["path"], 1);
+    }
+}
 
 return [
 
@@ -69,7 +71,6 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-
     'pgsql' => array(
             'driver'   => 'pgsql',
             'host'     => $host,
