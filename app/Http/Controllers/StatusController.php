@@ -9,7 +9,6 @@ class StatusController extends Controller
 {
     public function show($name)
     {
-        ucfirst($name);
         $teacher = Teacher::where('name', 'LIKE', '%'.$name.'%')->get()->first();
         return view('status')->with('teacher', $teacher);
     }
